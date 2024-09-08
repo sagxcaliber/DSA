@@ -79,7 +79,7 @@ class LinkList:
         self.length -= 1
 
     def get(self, index):
-        if self.length > 0 and index <= self.length :
+        if self.length > 0 and index <= self.length:
             temp_node = self.head
             for _ in range(1, index):
                 temp_node = temp_node.next
@@ -123,16 +123,26 @@ class LinkList:
 
         return temp_node.value
 
+    # def reverse(self):
+    #     temp_node = self.head
+    #     self.head = self.tail
+    #     self.tail = self.head
+    #     before = None
+    #     for _ in range(self.length):
+    #         after = temp_node.next
+    #         temp_node.next = before
+    #         before = temp_node
+    #         temp_node = after
     def reverse(self):
         temp_node = self.head
         self.head = self.tail
-        self.tail = self.head
+        self.tail = temp_node
+        after = temp_node
         before = None
         for _ in range(self.length):
-            after = temp_node.next
-            temp_node.next = before
             before = temp_node
             temp_node = after
+            after = temp_node.next
 
 
 l = LinkList(value=1)
