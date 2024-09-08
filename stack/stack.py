@@ -13,20 +13,22 @@ class Stack:
 
     def push(self, value):
         new_node = NewNode(value)
-        temp_node = self.top
-        self.top = new_node
-        self.top.next = temp_node
+        if self.height == 0:
+            self.top = new_node
+            self.bottom = new_node
+            self.height += 1
+        else:
+            new_node.next = self.top
+            self.top = new_node
         self.height += 1
         return True
 
     def pop(self):
         if self.height == 0:
-            self.top = None
-            self.bottom = None
-            self.height = 0
             return None
         temp_node = self.top
         self.top = self.top.next
+        temp_node.next = None
         self.height -= 1
         print('pop from stack : ', temp_node.value)
         return temp_node
