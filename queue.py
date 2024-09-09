@@ -9,28 +9,32 @@ class Queue:
         new_node = NewNode(value)
         self.first = new_node
         self.last = new_node
-        self.height = 1
+        self.length = 1
 
     def Enqueue(self, value):
         new_node = NewNode(value)
-        if self.height == 0:
+        if self.length == 0:
             self.first = new_node
             self.last = new_node
         else:
             self.last.next = new_node
             self.last = self.last.next
-        self.height += 1
+        self.length += 1
         return True
 
     def Dequeue(self):
 
-        if self.height == 0:
+        if self.length == 0:
             return None
         temp_node = self.first
-        self.first = self.first.next
-        temp_node.next = None
-        self.height -= 1
-        print('Dequeue : ', temp_node.value)
+        if self.length == 1:
+            self.first = None
+            self.last = None
+        else:
+            self.first = self.first.next
+            temp_node.next = None
+            print('Dequeue : ', temp_node.value)
+        self.length -= 1
         return temp_node
 
     def print_queue(self):
